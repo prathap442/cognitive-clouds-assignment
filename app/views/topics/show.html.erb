@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @topic.name %>
+</p>
+<ol>
+<%@topic.questions.each do |question|%>
+  <li>
+    QuestionName<%= question.name %><br/>
+    QuestionShowpage: <%= link_to "#{question.name}", question_path(question)%>
+  </li>  
+<%end%>
+<br/>
+<br/>
+<br/>
+<br/>
+</ol>
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>

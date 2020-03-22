@@ -1,0 +1,27 @@
+<%= form_with(model: fellow, local: true) do |form| %>
+  <% if fellow.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fellow.errors.count, "error") %> prohibited this fellow from being saved:</h2>
+
+      <ul>
+      <% fellow.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :followed_source_id %>
+    <%= form.text_field :followed_source_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :follower_id %>
+    <%= form.text_field :follower_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

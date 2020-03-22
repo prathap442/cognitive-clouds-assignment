@@ -23,8 +23,8 @@
           <td><%= link_to 'Edit', edit_question_path(question)   %></td>
           <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }%></td>
         <%else%>
-          <td><button class="follow_user" datasource="<%={fellow_source_id: current_user_id}%>"> Follow "<%=question.user.name%>"</button></td>
-          <td><button class="follow_topic" datasource="<%= {fellower_id: question.user_id}%>">Topic: <%="#{question.topic.name}"%> </button></td>
+          <td><button class="follow_user" data="<%={fellowed_source_id: current_user_id,fellower_id: question.user_id}.to_json%>"> Follow <%=question.user.email%></button></td>
+          <td><button class="follow_topic" data="<%= {topic_id: question.topic.id, user_id: current_user.id}.to_json%>">Topic: <%=question.topic.name%> </button></td>
         <%end%>          
       </tr>
     <% end %>
@@ -35,12 +35,31 @@
 <%= link_to 'New Question', new_question_path(user_id: current_user.id) %>
 
 
+
+I Follow these Users
+
+
+
+
 <script>
   $(document).ready(()=>{
     console.log("the document is being ready");    
   })
 
   $('.follow_user').click((e)=>{
-    debugger;
+    obtained_information = JSON.parse(e.target.getAttribute('data'))
+    $.ajax({
+      url: "/fellow_links/follow_user",
+      type:'post',
+      data: {
+       followed_source_id: obtained_information["fellowed_source_id"],
+       follower_id: obtained_information["fellower_id"],
+       authenticity_token: "<%=form_authenticity_token%>"
+      },
+      success: function(result){
+        console.log(result);
+      }
+
+    });
   })
 </script>

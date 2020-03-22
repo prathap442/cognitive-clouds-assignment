@@ -1,0 +1,2 @@
+module FellowTopicsHelper
+end

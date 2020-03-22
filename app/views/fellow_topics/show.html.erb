@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @fellow_topic.user_id %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @fellow_topic.topic_id %>
+</p>
+
+<%= link_to 'Edit', edit_fellow_topic_path(@fellow_topic) %> |
+<%= link_to 'Back', fellow_topics_path %>

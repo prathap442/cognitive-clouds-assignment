@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fellow Topics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Topic</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fellow_topics.each do |fellow_topic| %>
+      <tr>
+        <td><%= fellow_topic.user_id %></td>
+        <td><%= fellow_topic.topic_id %></td>
+        <td><%= link_to 'Show', fellow_topic %></td>
+        <td><%= link_to 'Edit', edit_fellow_topic_path(fellow_topic) %></td>
+        <td><%= link_to 'Destroy', fellow_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fellow Topic', new_fellow_topic_path %>

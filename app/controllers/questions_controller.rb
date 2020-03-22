@@ -10,11 +10,12 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @already_submitted = @question.answers.pluck(:user_id).include?(current_user.id)
   end
 
   # GET /questions/new
   def new
-    @question = Question.new
+    @question = Question.new(user_id: current_user.id)    
   end
 
   # GET /questions/1/edit
@@ -25,7 +26,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    @question.user_id = current_user.id
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
@@ -69,6 +70,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:name, :topic_id)
+      params.require(:question).permit(:name, :topic_id, :user_id)
     end
 end

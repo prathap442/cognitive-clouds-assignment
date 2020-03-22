@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_093324) do
+ActiveRecord::Schema.define(version: 2020_03_22_104741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2020_03_22_093324) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "fellow_topics", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "fellows", force: :cascade do |t|
@@ -36,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_093324) do
     t.integer "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["topic_id"], name: "index_questions_on_topic_id"
   end
 

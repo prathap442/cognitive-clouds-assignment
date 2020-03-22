@@ -12,7 +12,7 @@ topic_names.each do |topic_name|
   t1 = Topic.new(name: topic_name)
   t1.save
   5.times do |time|
-    t1.questions.new(name: "topic_#{topic_name}_question_#{time+1}")
+    t1.questions.new(name: "topic_#{topic_name}_question_#{time+1}",user_id: Random.rand(1..2))
     t1.save
   end
 end

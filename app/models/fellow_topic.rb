@@ -1,0 +1,2 @@
+class FellowTopic < ApplicationRecord
+end

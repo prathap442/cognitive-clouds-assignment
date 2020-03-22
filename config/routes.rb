@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fellow_topics
   resources :fellows
   resources :answers
   resources :questions

@@ -8,8 +8,21 @@
 <p>
   <strong>Topic:</strong>
   <%= @question.topic_id %>
-  <%=link_to "answer_question", new_answer_path(question_id: @question.id)%>
 </p>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
+<%unless @already_submitted%>
+  <%=link_to "answer_question", new_answer_path(question_id: @question.id)%>
+<%end%>
+
+<%#= link_to 'Edit', edit_question_path(@question) %>
 <%= link_to 'Back', questions_path %>
+
+The answers are answered by:
+<ol>
+  <%@question.answers.each do |answer|%>
+    <li>
+      AnsweredBy: <%= answer.user.email %>
+      AnswerIs: <%= answer.name %>
+    </li>
+  <%end%>
+</ol>

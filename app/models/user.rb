@@ -3,5 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :fellows 
+  def get_followers
+    @fellows = Fellow.where(followed_source_id: self.id)
+    @fellows
+  end
 end

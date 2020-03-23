@@ -61,6 +61,17 @@ class FellowTopicsController < ApplicationController
     end
   end
 
+  def fellow_topic_chainer
+    user_id = params[:user_id]
+    topic_id = params[:topic_id]
+    ft = FellowTopic.new(user_id: user_id, topic_id: topic_id)
+    if(ft.save)
+      render json: {msg: "successful", errors: ft.errors.full_messages, response: ft.attributes}.to_json
+    else
+      render json: {msg: "unsuccessful", errors: ft.errors.full_messages, response: ft.attributes}.to_json
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fellow_topic

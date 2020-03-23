@@ -19,4 +19,5 @@ class FellowLinksController < ApplicationController
       topic_id: topic_id
     )
   end
+
 end
